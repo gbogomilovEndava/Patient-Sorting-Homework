@@ -5,8 +5,7 @@ class Patient {
 }
 document.addEventListener("keydown", (event) => {
   if (event.code === "Enter") {
-    const arr = [];
-    takeInput(arr);
+    const arr = document.querySelector("input").value.split(";");
     const patients = new Patient(arr.sort());
     toList(patients.fullData);
     clearInput();
@@ -19,16 +18,4 @@ const toList = (output) => {
 };
 const clearInput = () => {
   document.querySelector("input").value = "";
-};
-const takeInput = (arr) => {
-  for (i = 0, k = 0; i < 3; i++) {
-    arr.push(
-      Array.from(document.querySelector("input").value)
-        .join("")
-        .split(/(?:, |;)+/)
-        .splice(0 + k, 3)
-    );
-    k += 3;
-  }
-  return arr;
 };
